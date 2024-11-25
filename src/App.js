@@ -64,8 +64,8 @@ const App = () => {
 
   return (
     <div className="App">
-      {<div className='flex flex-col gap-5 lg:flex-row py-5 px-4 md:p-8 bg-rose-50 h-full'>
-        <div className='w-full lg:w-4/5'>
+      {<div className='flex flex-col gap-5 lg:flex-row py-5 px-4 md:p-8 bg-[var(--Rose-100)] h-full'>
+        <div className='w-full lg:w-3/4'>
           <ProductList
             products={products}
             incrementQuantity={incrementQuantity}
@@ -73,7 +73,7 @@ const App = () => {
           />
         </div>
 
-        <div className='w-full lg:w-1/5'>
+        <div className='w-full lg:w-1/4'>
           <Cart
             products={products}
             removeItems={removeItems}

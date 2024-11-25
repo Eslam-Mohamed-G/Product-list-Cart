@@ -20,7 +20,7 @@ const Product = (props) => {
     return (
         <div className="flex flex-col mb-5 md:pr-4 md:w-1/3">
             <div className={`relative mb-7 w-full`}>
-                <div className={`rounded-[10px] overflow-hidden ${props.product.quantity === 0 ? "border-[var(--Rose-50)]" : "border-[var(--Red)]"} w-full`}>
+                <div className={`rounded-[10px] overflow-hidden border ${props.product.quantity === 0 ? "border-[var(--Rose-100)]" : "border-[var(--Red)]"} w-full`}>
                     <img
                         className="hidden lg:block w-full"
                         src={props.product.image.desktop}
@@ -46,10 +46,10 @@ const Product = (props) => {
                             <p>Add to Cart</p>
                         </div>
                         :
-                        <div className='w-full flex gap-1 items-center justify-between'>
-                            <span onClick={() => { props.decrementQuantity(props.product.id) }} className='border border-[var(--Rose-50)] rounded-[50%] w-4 h-4 flex items-center justify-center hover:bg-[var(--Rose-50)]'><img src={decrement} alt="decrement" /></span>
+                        <div className='w-full flex gap-1 items-center justify-between text-[var(--Rose-50)]'>
+                            <span onClick={() => { props.decrementQuantity(props.product.id) }} className='border border-[var(--Rose-50)] rounded-[50%] w-4 h-4 flex items-center justify-center text-center text-[24px] hover:text-[var(--Red)] hover:bg-[var(--Rose-50)]'>-</span>
                             <p className="text-[var(--Rose-50)]">{props.product.quantity}</p>
-                            <span onClick={() => { props.incrementQuantity(props.product.id) }} className='border border-[var(--Rose-50)] rounded-[50%] w-4 h-4 flex items-center justify-center'><img src={increment} alt="increment" /></span>
+                            <span onClick={() => { props.incrementQuantity(props.product.id) }} className='border border-[var(--Rose-50)] rounded-[50%] flex items-center justify-center text-center text-[24px] hover:text-[var(--Red)] hover:bg-[var(--Rose-50)]'>+</span>
                         </div>
                     }
                 </div>

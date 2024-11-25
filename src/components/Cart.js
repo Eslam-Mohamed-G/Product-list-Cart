@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import OrderConfirmation from './OrderConfirmation';
+import emptyCart from '../images/illustration-empty-cart.svg';
+import remove from '../images/icon-remove-item.svg';
+import carbon from '../images/icon-carbon-neutral.svg'
 
 const Cart = (props) => {
 
@@ -47,10 +50,10 @@ const Cart = (props) => {
     }, [orderConfirmation]);
 
     return (
-        <div className='cart-container'>
-            <h2 className='cart-heading'>Your Cart ({props.products ? countItemsInCart(props.products) : '0'})</h2>
-            {(!props.products || countItemsInCart(props.products) === 0) && <div className='empty-cart'>
-                <img src='./images/illustration-empty-cart.svg' alt='Empty Cart' />
+        <div className='bg-[var(--Rose-50)] py-3 px-7 rounded-[20px]'>
+            <h2 className='text-[var(--Red)] font-bold text-[24px] mb-2'>Your Cart ({props.products ? countItemsInCart(props.products) : '0'})</h2>
+            {(!props.products || countItemsInCart(props.products) === 0) && <div className='flex flex-col items-center'>
+                <img src={emptyCart} alt='Empty Cart' />
                 <p>Your added items will apear here</p>
             </div>}
             {props.products && countItemsInCart(props.products) !== 0 && <div className='cart-with-items'>
@@ -59,17 +62,22 @@ const Cart = (props) => {
                         if (product.quantity !== 0) {
 
                             return (
-                                <div key={product.id} className='cart-item'>
+                                <>
+                                <div key={product.id} className='flex justify-between items-center'>
                                     <div className='selected-product'>
-                                        <h3 className='product-heading'>{product.name}</h3>
-                                        <div className='item-order-details'>
-                                            <p className='quantity'>{product.quantity}x</p>
-                                            <p className='unit-price'>@ ${Number(product.price).toFixed(2)}</p>
-                                            <p className='price-in-general'>${(Number(product.price) * product.quantity).toFixed(2)}</p>
+                                        <h3 className='product-heading text-[var(--Rose-900)]'>{product.name}</h3>
+                                        <div className='flex flex-row gap-2'>
+                                            <p className='text-[var(--Red)]'>{product.quantity}x</p>
+                                            <p className='text-[var(--Rose-500)]'>@ ${Number(product.price).toFixed(2)}</p>
+                                            <p className='text-[var(--Rose-500)] font-bold'>${(Number(product.price) * product.quantity).toFixed(2)}</p>
                                         </div>
                                     </div>
-                                    <button className='remove-from-cart-button' onClick={() => { props.removeItems(product.id) }}></button>
+                                    <button className='rounded-[50%] border border-[var(--Rose-500)] p-[2px]' onClick={() => { props.removeItems(product.id) }}>
+                                        <img src={remove} alt="remove" />
+                                    </button>
                                 </div>
+                                <hr className='bg-[var(--Rose-500)] my-3'/>
+                                </>
                             )
                         } else {
                             return null;
@@ -77,17 +85,23 @@ const Cart = (props) => {
 
                     })}
                 </div>
-                <div className='order-summary'>
-                    <p className='order-txt'>Order Total</p>
-                    <p className='price-summary'>${countTotalPrice(props.products)}</p>
+                <div className='flex flex-col gap-4'>
+                    <div className='flex justify-between font-bold'>
+                        <p className='text-[var(--Rose-500)]'>Order Total</p>
+                        <p className='text-[20px]'>${countTotalPrice(props.products)}</p>
+                    </div>
+                    <div className='bg-[var(--Rose-100)] flex items-center justify-center rounded-[5px] py-2'>
+                        <img src={carbon} alt='Tree Icon' />
+                        <p className='text-[var(--Rose-500)]'>This is <span className='font-bold text-[var(--Rose-900)]'>carbon-neutral</span>  delivery</p>
+                    </div>
+
+                    <button className='w-full py-3 bg-[var(--Red)] rounded-[25px] text-[var(--Rose-50)] text-center' onClick={confirmOrder}>Confirm Order</button>
                 </div>
-                <div className='delivery-info'>
-                    <img src='./images/icon-carbon-neutral.svg' alt='Tree Icon' />
-                    <p className='delivery-info-txt'>This is carbon-neutral delivery</p>
-                </div>
-                <button className='confirmation-button' onClick={confirmOrder}>Confirm Order</button>
             </div>}
-            <OrderConfirmation trigger={orderConfirmation} products={props.products} countTotalPrice={countTotalPrice} />
+            <div className='fixed top-0 left-0 flex items-center justify-center bg-[var(--Rose-50)]'>
+                <div className=''></div>
+                <OrderConfirmation trigger={orderConfirmation} products={props.products} countTotalPrice={countTotalPrice} />
+            </div>
         </div>
     )
 }
