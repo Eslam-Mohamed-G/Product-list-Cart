@@ -18,7 +18,7 @@ const Product = (props) => {
 
 
     return (
-        <div className="flex flex-col mb-5 mr-4 md:w-1/3">
+        <div className="flex flex-col mb-5 md:pr-4 md:w-1/3">
             <div className={`relative mb-7 w-full`}>
                 <div className={`rounded-[10px] overflow-hidden ${props.product.quantity === 0 ? "border-[var(--Rose-50)]" : "border-[var(--Red)]"} w-full`}>
                     <img
