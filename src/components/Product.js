@@ -46,10 +46,33 @@ const Product = (props) => {
                             <p>Add to Cart</p>
                         </div>
                         :
-                        <div className='w-full flex gap-1 items-center justify-between text-[var(--Rose-50)]'>
-                            <span onClick={() => { props.decrementQuantity(props.product.id) }} className='border border-[var(--Rose-50)] rounded-[50%] w-4 h-4 flex items-center justify-center text-center text-[24px] hover:text-[var(--Red)] hover:bg-[var(--Rose-50)]'>-</span>
+                        <div className='w-full flex gap-1 items-center justify-between text-center text-[var(--Rose-50)]'>
+                            <span onClick={() => { props.decrementQuantity(props.product.id) }} 
+                                className="border border-[var(--Rose-50)] rounded-[50%] w-5 h-5 flex items-center justify-center content-center text-[32px] group hover:bg-[var(--Rose-50)]">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="10"
+                                    height="2"
+                                    fill="none"
+                                    viewBox="0 0 10 2"
+                                    className="fill-[var(--Rose-50)] group-hover:fill-[red]">
+                                    <path d="M0 .375h10v1.25H0V.375Z" />
+                                </svg>
+                            </span>
                             <p className="text-[var(--Rose-50)]">{props.product.quantity}</p>
-                            <span onClick={() => { props.incrementQuantity(props.product.id) }} className='border border-[var(--Rose-50)] rounded-[50%] flex items-center justify-center text-center text-[24px] hover:text-[var(--Red)] hover:bg-[var(--Rose-50)]'>+</span>
+                            <span onClick={() => { props.incrementQuantity(props.product.id) }}
+                                className="group w-5 h-5 flex items-center justify-center border rounded-full hover:bg-gray-200">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="10"
+                                    height="10"
+                                    fill="none"
+                                    viewBox="0 0 10 10"
+                                    className="fill-white group-hover:fill-[red]">
+                                    <path d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z" />
+                                </svg>
+                            </span>
+
                         </div>
                     }
                 </div>
