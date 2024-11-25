@@ -98,10 +98,7 @@ const Cart = (props) => {
                     <button className='w-full py-3 bg-[var(--Red)] rounded-[25px] text-[var(--Rose-50)] text-center' onClick={confirmOrder}>Confirm Order</button>
                 </div>
             </div>}
-            <div className='fixed top-0 left-0 flex items-center justify-center bg-[var(--Rose-50)]'>
-                <div className=''></div>
-                <OrderConfirmation trigger={orderConfirmation} products={props.products} countTotalPrice={countTotalPrice} />
-            </div>
+            <OrderConfirmation trigger={orderConfirmation} products={props.products} countTotalPrice={countTotalPrice} />
         </div>
     )
 }
