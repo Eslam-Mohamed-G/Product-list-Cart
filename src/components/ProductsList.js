@@ -1,11 +1,10 @@
-
 import Product from "./Product";
 
 const ProductList = (props) => {
     return (
-        <div className='products-list-container'>
-            <h1 className='list-header'>Desserts</h1>
-            <div className="product-list">
+        <div className='flex flex-col'>
+            <h1 className='mb-5 font-bold text-[24px]'>Desserts</h1>
+            <div className="w-full flex flex-col md:flex-row flex-wrap box-border">
                 {props.products && props.products.map((product, index) => {
                     return (
                         <Product 

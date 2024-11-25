@@ -64,17 +64,21 @@ const App = () => {
 
   return (
     <div className="App">
-      {<div className='flex flex-col md:flex-row py-5 px-4 md:p-8 bg-rose-50 h-full'>
-        <ProductList 
-          products={products} 
-          incrementQuantity={incrementQuantity}
-          decrementQuantity={decrementQuantity} 
-        />
+      {<div className='flex flex-col gap-5 lg:flex-row py-5 px-4 md:p-8 bg-rose-50 h-full'>
+        <div className='w-full lg:w-4/5'>
+          <ProductList
+            products={products}
+            incrementQuantity={incrementQuantity}
+            decrementQuantity={decrementQuantity}
+          />
+        </div>
 
-        <Cart 
-          products={products} 
-          removeItems={removeItems} 
-        />
+        <div className='w-full lg:w-1/5'>
+          <Cart
+            products={products}
+            removeItems={removeItems}
+          />
+        </div>
       </div>}
     </div>
   );
