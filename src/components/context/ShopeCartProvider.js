@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from 'react'
+import Cart from '../Cart';
 const shopingCartContext = createContext({});
 
 const ShopeCartProvider = ({children}) => {
@@ -42,6 +43,7 @@ const ShopeCartProvider = ({children}) => {
     return (
         <shopingCartContext.Provider value={{cartItems, getItemsQuantity, increaseCartQuantity, decreaseCartQuantity}}>
             {children}
+            <Cart/>
         </shopingCartContext.Provider>
     )
 }

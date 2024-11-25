@@ -1,20 +1,82 @@
 import './index.css';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import Cart from './components/Cart';
-import Products from './components/Products';
-import ShopeCartProvider from './components/context/ShopeCartProvider';
+import ProductList from './components/ProductsList';
 
-function App() {
+const App = () => {
+
+  const [products, setProducts] = useState();
+
+  useEffect(() => {
+    fetch('./data.json', {
+    
+      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+      })
+      .then(res => res.json())
+      .then((data) => {
+        const dataHolder = data.map((item, index) => {
+          return { ...item, id: index, quantity: 0 }
+        })
+        setProducts(dataHolder)
+
+      })
+      .catch(err => {
+        console.error('Error fetching data: ' + err);
+      })
+  }, []);
+
+  const incrementQuantity = (id) => {
+
+    if (products.some(element => element.id === id)) {
+
+      setProducts(products => products.map(element => element.id === id
+        ? { ...element, quantity: element.quantity + 1 }
+        : { ...element }
+      ))
+    }
+  }
+
+  const decrementQuantity = (id) => {
+
+    if (products.some(element => element.id === id)) {
+
+      setProducts(products => products.map(element => element.id === id
+        ? { ...element, quantity: element.quantity - 1 }
+        : { ...element }
+      ))
+    }
+  }
+
+  const removeItems = (id) => {
+
+    if (products.some(element => element.id === id)) {
+
+      setProducts(products => products.map(element => element.id === id
+        ? { ...element, quantity: 0 }
+        : { ...element }
+      ))
+    }
+  }
+
   return (
-    <ShopeCartProvider> 
-    <div className="box-border flex flex-col w-full xl:flex-row xl:p-14 px-5 py-5 bg-[var(--Rose-100)]">
-      <div className='box-border xl:w-2/3'>
-        <Products/>
-      </div>
-      <div className='box-border xl:w-1/3'>
-        <Cart/>
-      </div>
+    <div className="App">
+      {<div className='flex flex-col md:flex-row py-5 px-4 md:p-8 bg-rose-50 h-full'>
+        <ProductList 
+          products={products} 
+          incrementQuantity={incrementQuantity}
+          decrementQuantity={decrementQuantity} 
+        />
+
+        <Cart 
+          products={products} 
+          removeItems={removeItems} 
+        />
+      </div>}
     </div>
-    </ShopeCartProvider>
   );
 }
 
