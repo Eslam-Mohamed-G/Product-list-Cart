@@ -21,6 +21,10 @@ The users able to:
 - Tailwind css
 - Fetch data.json
 
+### Links
+
+- [live site URL here](https://product-list-cart-sable.vercel.app/)
+
 
 # Getting Started with Create React App
 
